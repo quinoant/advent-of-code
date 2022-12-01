@@ -14,7 +14,7 @@
 #	rustc source_file.rs
 
 build:
-	javac day2.java
+	echo "Nothing to compile."
 
 #Run commands to copy:
 #Replace ./HelloWorld below with the appropriate command.
@@ -30,4 +30,4 @@ build:
 #	./source_file
 
 run:
-	java day2
+	python3 cal_counter.py
