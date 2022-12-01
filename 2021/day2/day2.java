@@ -1,9 +1,10 @@
-package ;
+//package 2021.day_2;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class day2{
+public class day2 {
     public static int[] chkr2(Scanner sc){
         int[] toRet = {0,0};
         int aim = 0;
@@ -53,10 +54,13 @@ public class day2{
     }
     public static void main(String[] args) throws FileNotFoundException {
         File file = new File("input.txt");
-        Scanner sc = new Scanner(file);
-        int[] sol = chkr2(sc);
-        System.out.println(sol[0]);
-        System.out.println(sol[1]);
-        System.out.println(sol[1]*sol[0]);
+        Scanner sc1 = new Scanner(file);
+        Scanner sc2 = new Scanner(file);
+        int[] sol1 = chkr1(sc1);
+        System.out.print("1: ");
+        System.out.println(sol1[1]*sol1[0]);
+        int[] sol2 = chkr2(sc2);
+        System.out.print("2: ");
+        System.out.println(sol2[1]*sol2[0]);
     }
 }
