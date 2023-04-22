@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class day5 {
+
     /**
      * Turns each stack into a priority queue
      * @param sc - the scanner witht the puzzle input
@@ -65,24 +66,25 @@ public class day5 {
             while(quantity > 0){
                 /* System.out.println(stacks[tops[destination]][destination]);
                 System.out.println(stacks[tops[origin]-1][origin]); */
-                //System.out.println(Arrays.deepToString(stacks));
+                System.out.println(Arrays.deepToString(stacks));
                 stacks[tops[destination]][destination] = stacks[tops[origin]-1][origin];
-                //System.out.println();
+                System.out.println();
                 stacks[tops[origin]-1][origin] = '\0';
-                //System.out.println(Arrays.deepToString(stacks));
-                tops[origin]--;;
+                System.out.println(Arrays.deepToString(stacks));
+                tops[origin]--;
                 tops[destination]++;
                 quantity--;
             }
 
         }
+        //execute
+    }
     public static void processor(Scanner sc){
         int totStacks = 3; //9
         int inputHeight = 3; //8
         int maxHeight = 6; //50
         char[][] stacks = initialStacksProcessor(sc, totStacks, inputHeight,maxHeight);
         MoveProcessor(stacks, sc);
-        //System.out.println(Arrays.deepToString(stacks));
 
     }
 
