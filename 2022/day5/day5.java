@@ -3,6 +3,8 @@ import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import javax.swing.DefaultSingleSelectionModel;
+
 public class day5 {
 
     /**
@@ -49,7 +51,7 @@ public class day5 {
         }
         return tops;
     }
-    public static void MoveProcessor(char[][] stacks, Scanner sc){
+    public static int[] MoveProcessor(char[][] stacks, Scanner sc){
         sc.nextLine();
         int quantity;
         int origin;
@@ -66,30 +68,74 @@ public class day5 {
             while(quantity > 0){
                 /* System.out.println(stacks[tops[destination]][destination]);
                 System.out.println(stacks[tops[origin]-1][origin]); */
-                System.out.println(Arrays.deepToString(stacks));
+                //System.out.println(Arrays.deepToString(stacks));
                 stacks[tops[destination]][destination] = stacks[tops[origin]-1][origin];
-                System.out.println();
+                //System.out.println();
                 stacks[tops[origin]-1][origin] = '\0';
-                System.out.println(Arrays.deepToString(stacks));
+                //System.out.println(Arrays.deepToString(stacks));
                 tops[origin]--;
                 tops[destination]++;
                 quantity--;
             }
 
         }
+        return tops;
         //execute
     }
+
+    public static int[] MoveProcessor9001(char[][] stacks, Scanner sc, int maxHeight){
+        sc.nextLine();
+        int quantity;
+        int origin;
+        int destination;
+        int[] tops = TopFinder(stacks);
+        while(sc.hasNextLine()){
+            sc.next();
+            quantity = sc.nextInt();
+            int pureQuant = quantity;
+            sc.next();
+            origin = sc.nextInt() - 1;
+            sc.next();
+            destination = sc.nextInt() - 1;
+            char[] holder = new char[maxHeight];
+            //now move
+            while(quantity > 0){
+                //System.out.println(Arrays.toString(holder));
+                holder[quantity-1] = stacks[tops[origin]-1][origin];
+                stacks[tops[origin]-1][origin] = '\0';
+                quantity--;
+                tops[origin]--;
+                /* stacks[tops[destination]][destination] = stacks[tops[origin]-1][origin];
+                stacks[tops[origin]-1][origin] = '\0';
+                tops[origin]--;
+                tops[destination]++;
+                quantity--; */
+            }
+            for(int i = 0; i < pureQuant; i++){
+                stacks[tops[destination]][destination] = holder[i];
+                tops[destination]++;
+            }
+            //System.out.println(Arrays.deepToString(stacks));
+        }
+        return tops;
+        //execute
+    }
+
+    
     public static void processor(Scanner sc){
-        int totStacks = 3; //9
-        int inputHeight = 3; //8
-        int maxHeight = 6; //50
+        int totStacks = 9; //9
+        int inputHeight = 8; //8
+        int maxHeight = 50; //50
         char[][] stacks = initialStacksProcessor(sc, totStacks, inputHeight,maxHeight);
-        MoveProcessor(stacks, sc);
+        int[] tops = MoveProcessor9001(stacks, sc,maxHeight);
+        for(int i = 0; i < totStacks; i++){
+            System.out.println(stacks[tops[i]-1][i]);
+        }
 
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        File file = new File("test.txt");
+        File file = new File("input.txt");
         Scanner sc1 = new Scanner(file);
         processor(sc1);
     }
