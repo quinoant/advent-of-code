@@ -1,9 +1,8 @@
-
+package src.senior.day6;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.Scanner;
 
 import org.junit.Test;
 

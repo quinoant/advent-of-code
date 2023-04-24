@@ -1,5 +1,3 @@
-//package 2021.day_2;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
