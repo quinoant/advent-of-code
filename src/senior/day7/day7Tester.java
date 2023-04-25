@@ -14,7 +14,7 @@ import org.junit.Test;
 public class day7Tester{
     @Test
     public void testGettingANullWhenLookingForAFakeFolder(){
-        FileSystemGenerator toTest = new FileSystemGenerator();
+        FileSystemGenerator toTest = new FileSystemGenerator(new File("/Users/quinoant/Downloads/advent-of-code/src/senior/day7/test.txt"));
         Folder root = new Folder();
         root.setName("/");
         Folder returned = toTest.cd("bull", root);
@@ -24,7 +24,7 @@ public class day7Tester{
 
     @Test
     public void testGettingChildrenBack(){
-        FileSystemGenerator toTest = new FileSystemGenerator();
+        FileSystemGenerator toTest = new FileSystemGenerator(new File("/Users/quinoant/Downloads/advent-of-code/src/senior/day7/test.txt"));
         Folder root = new Folder();
         root.setName("/");
         Folder child = new Folder(root);
@@ -37,7 +37,7 @@ public class day7Tester{
 
     @Test
     public void testChangingObj(){
-        FileSystemGenerator toTest = new FileSystemGenerator();
+        FileSystemGenerator toTest = new FileSystemGenerator(new File("/Users/quinoant/Downloads/advent-of-code/src/senior/day7/test.txt"));
         Folder root = new Folder();
         root.setName("/");
         Folder returned = toTest.cd("bull", root);
@@ -48,7 +48,7 @@ public class day7Tester{
 
     @Test
     public void testGoingInAndOut(){
-        FileSystemGenerator toTest = new FileSystemGenerator();
+        FileSystemGenerator toTest = new FileSystemGenerator(new File("/Users/quinoant/Downloads/advent-of-code/src/senior/day7/test.txt"));
         Folder root = new Folder();
         root.setName("/");
         Folder child = new Folder(root);
@@ -59,8 +59,21 @@ public class day7Tester{
     }
 
     @Test
+    public void testCdChangingDirectory(){
+        FileSystemGenerator toTest = new FileSystemGenerator(new File("/Users/quinoant/Downloads/advent-of-code/src/senior/day7/test.txt"));
+        Folder root = new Folder();
+        root.setName("/");
+        Folder returned = toTest.cd("bull", root);
+        assertEquals("bull",returned.getName());
+        assertEquals(root.getChildren()[0], "bull");
+        Scanner sc = new Scanner("dir b\n1234 c\ndir z\n666 hell.txt");
+        toTest.ls(root, sc);
+        assertEquals(5,root.getNumChildren());
+    }
+
+    @Test
     public void testLsDir() throws FileNotFoundException{
-        FileSystemGenerator toTest = new FileSystemGenerator();
+        FileSystemGenerator toTest = new FileSystemGenerator(new File("/Users/quinoant/Downloads/advent-of-code/src/senior/day7/test.txt"));
         Folder root = new Folder();
         root.setName("/");
         Scanner sc = new Scanner("dir b\n1234 c\ndir z\n666 hell.txt");
@@ -71,8 +84,26 @@ public class day7Tester{
 
     @Test
     public void finalTest() throws FileNotFoundException{
-        FileSystemGenerator toTest = new FileSystemGenerator();
+        FileSystemGenerator toTest = new FileSystemGenerator(new File("/Users/quinoant/Downloads/advent-of-code/src/senior/day7/test.txt"));
         Folder root = toTest.processor();
-        assertEquals(4,root.getNumChildren());
+        Folder kidOne = root.getChildren("a");
+        Folder kidTwo = root.getChildren("d");
+        Folder grandchild = root.getChildren("a").getChildren("e");
+        assertNotNull(grandchild );
+        assertEquals(584,grandchild.getTotSize());
+        assertEquals(94853 ,kidOne.getTotSize());//24933642
+        assertEquals(24933642 ,kidTwo.getTotSize());//48381165
+        assertEquals(48381165 ,root.getTotSize());//95437
+        assertEquals(95437, toTest.scorer());
+        assertEquals(24933642,toTest.toDelete(root));
+    }
+
+    @Test
+    public void challenge() throws FileNotFoundException{ 
+        FileSystemGenerator toTest = new FileSystemGenerator(new File("/Users/quinoant/Downloads/advent-of-code/src/senior/day7/input.txt"));
+        Folder root = toTest.processor();
+        assertEquals(1449447, toTest.scorer());
+        assertEquals(48381165,toTest.toDelete(root));
+
     }
 }

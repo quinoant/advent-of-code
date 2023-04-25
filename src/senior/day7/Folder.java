@@ -8,11 +8,13 @@ public class Folder {
     private int fileSize;
     private int numChildren;
     private int totSize;
+    private int location;
     
 
     
     
 
+    
     public Folder(){
         this.children = new Folder[30];
         this.file = false;
@@ -100,6 +102,14 @@ public class Folder {
 
     public void addToTotalSize(int toAdd){
         this.totSize += toAdd;
+    }
+
+    public int getLocation() {
+        return location;
+    }
+    
+    public void setLocation(int location) {
+        this.location = location;
     }
     
 }
