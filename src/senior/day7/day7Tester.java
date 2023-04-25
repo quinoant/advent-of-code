@@ -103,7 +103,7 @@ public class day7Tester{
         FileSystemGenerator toTest = new FileSystemGenerator(new File("/Users/quinoant/Downloads/advent-of-code/src/senior/day7/input.txt"));
         Folder root = toTest.processor();
         assertEquals(1449447, toTest.scorer());
-        assertEquals(48381165,toTest.toDelete(root));
+        assertEquals(8679207,toTest.toDelete(root));
 
     }
 }
