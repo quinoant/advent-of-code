@@ -7,8 +7,6 @@ public class runner {
     public static void main(String[] args) throws FileNotFoundException {
         TreeCounter toRun = new TreeCounter(new File("/Users/quinoant/Downloads/advent-of-code/src/senior/day8/test.txt"));
         toRun.treeGroveBuilder(5);
-        toRun.seeTrees(5);
-        //FileSystemGenerator f = new FileSystemGenerator();
-        //f.processor();
+        toRun.SeeTrees(5);
     }
 }

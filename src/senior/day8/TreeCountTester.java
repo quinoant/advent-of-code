@@ -49,7 +49,7 @@ public class TreeCountTester {
     public void seenOuterTreesTest() throws FileNotFoundException{
         TreeCounter toTest = new TreeCounter(new File("/Users/quinoant/Downloads/advent-of-code/src/senior/day8/test.txt"));
         toTest.treeGroveBuilder(5);
-        toTest.seeTrees(5);
+        toTest.SeeTrees(5);
         for(int i = 0; i < 5; i++){ //row
             for(int j = 0; j < 5; j++){ //column
                 if(i == 0 || i == 4 || j == 0 || j == 4){
@@ -67,14 +67,41 @@ public class TreeCountTester {
     public void seenInnerTreesTest() throws FileNotFoundException{
         TreeCounter toTest = new TreeCounter(new File("/Users/quinoant/Downloads/advent-of-code/src/senior/day8/test.txt"));
         toTest.treeGroveBuilder(5);
-        toTest.seeTrees(5);
+        toTest.SeeTrees(5);
         assertTrue(toTest.getSeenTrees()[3][1]);
-        assertTrue(toTest.getSeenTrees()[2][1]);
+        assertTrue(toTest.getSeenTrees()[2][1]); //
+        assertTrue(toTest.getSeenTrees()[3][2]);
+        assertTrue(toTest.getSeenTrees()[1][2]); //
+        assertTrue(toTest.getSeenTrees()[2][3]);
+
         assertFalse(toTest.getSeenTrees()[1][1]);
         assertFalse(toTest.getSeenTrees()[1][3]);
-        assertTrue(toTest.getSeenTrees()[3][2]);
-        assertTrue(toTest.getSeenTrees()[1][2]);
-        assertTrue(toTest.getSeenTrees()[2][3]);
+        
+    }
+
+    /**
+     * Tests whether all outside trees are set to seen
+     * @throws FileNotFoundException
+     */
+    @Test
+    public void correctNumSeenTest() throws FileNotFoundException{
+        TreeCounter toTest = new TreeCounter(new File("/Users/quinoant/Downloads/advent-of-code/src/senior/day8/test.txt"));
+        toTest.treeGroveBuilder(5);
+        toTest.SeeTrees(5);
+        assertEquals(21,toTest.getSeen());
+        
+    }
+
+    /**
+     * Tests whether all outside trees are set to seen
+     * @throws FileNotFoundException
+     */
+    @Test
+    public void partOneTest() throws FileNotFoundException{
+        TreeCounter toTest = new TreeCounter(new File("/Users/quinoant/Downloads/advent-of-code/src/senior/day8/input.txt"));
+        toTest.treeGroveBuilder(99);
+        toTest.SeeTrees(99);
+        assertEquals(1767,toTest.getSeen());
         
     }
 }
