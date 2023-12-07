@@ -13,6 +13,10 @@ public class TreeCounter {
 
     public boolean IsSeen(int row, int column){
         int height = treeGrove[row][column];
+        if(row == 0 || row == treeGrove.length-1 || column == 0 || column == treeGrove.length-1){
+            seen++;
+            return true;
+        }
 
         //up
         for(int i = 1; (i+row)<seenTrees.length;i++){
@@ -79,19 +83,30 @@ public class TreeCounter {
      */
     public void SeeTrees(int dimension){
         //int totalOutside = (2*dimension) - (2*(dimension-2));
-        this.seen += (2*dimension) + (2*(dimension-2));
-        for(int x = 0; x < dimension; x++){
-            seenTrees[0][x] = true;
-            seenTrees[dimension-1][x] = true;
-            seenTrees[x][0] = true;
-            seenTrees[x][dimension-1] = true;
-        }
+        // this.seen += (2*dimension) + (2*(dimension-2));
+        // for(int x = 0; x < dimension; x++){
+        //     seenTrees[0][x] = true;
+        //     seenTrees[dimension-1][x] = true;
+        //     seenTrees[x][0] = true;
+        //     seenTrees[x][dimension-1] = true;
+        // }
         //make an algo that goes in by layer, like an onion
-        for(int i = 1; i < (dimension-1);i++){
-                for(int j = 1; j < (dimension-1);j++){
+        for(int i = 0; i < (dimension/2)+1;i++){
+            for(int j = i; j < (dimension-i);j++){
+                if(!seenTrees[i][j]){
                     seenTrees[i][j] = IsSeen(i, j);
                 }
+                if(!seenTrees[dimension-1-i][j]){
+                    seenTrees[dimension-1-i][j] = IsSeen(dimension-1-i, j);
+                }
+                if(!seenTrees[j][i]){
+                    seenTrees[j][i] = IsSeen(j, i);
+                }
+                if(!seenTrees[j][dimension-1-i]){
+                    seenTrees[j][dimension-1-i] = IsSeen(j, dimension-1-i);
+                }
             }
+        }
     }
 
     /**
