@@ -1,15 +1,3 @@
-def series_extender(file):
-    with open(file,"r") as f:
-        sum = 0
-        for line in f:
-            line = (line.split())
-            for num in range(len(line)):
-                line[num] = int(line[num])
-            x = next_num_rev(line)
-            #print(x)
-            sum += x
-        print(sum)
-
 def series_chkr(file):
     with open(file,"r") as f:
         sum = 0
@@ -22,15 +10,31 @@ def series_chkr(file):
                 return False
             print(str(next_num(line)) + " = " + str(to_chk))
     return True
+"""
+Reading in the file
+
+"""
+def series_extender(file):
+    with open(file,"r") as f:
+        sum = 0
+        for line in f:
+            line = (line.split())
+            for num in range(len(line)):
+                line[num] = int(line[num])
+            x = next_num_rev(line)
+            sum += x
+        print(sum)
             
 def next_num(line):
-    #print(line)
+    #If everything is done start the cascade
     if all([x == 0 for x in line]):
         return 0
     next_line = []
+    #Calc each value in a row besides the new col
     for i in range(len(line)-1):
         next_line.append(line[i+1]- line[i])
-    return line[len(line)-1] + next_num(next_line)
+    y = line[len(line)-1] + next_num(next_line)
+    return y
 
 def next_num_rev(line):
     if all([x == 0 for x in line]):
@@ -38,8 +42,8 @@ def next_num_rev(line):
     next_line = []
     for i in range(len(line)-1):
         next_line.append(line[i+1]- line[i])
-    x = line[0] - next_num_rev(next_line)
-    return x
+    y = line[0] - next_num_rev(next_line)
+    return y
 
 
                  
