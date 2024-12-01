@@ -1,4 +1,4 @@
-package src.senior.day7;
+package src.main.senior.day7;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

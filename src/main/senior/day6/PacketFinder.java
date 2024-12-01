@@ -1,4 +1,4 @@
-package src.senior.day6;
+package src.main.senior.day6;
 
 import java.io.FileNotFoundException;
 import java.util.Arrays;

@@ -10,6 +10,7 @@ def series_chkr(file):
                 return False
             print(str(next_num(line)) + " = " + str(to_chk))
     return True
+
 """
 input: file to read
 output: nada prints answer
@@ -25,7 +26,7 @@ def series_extender(file):
             line = (line.split())
             for num in range(len(line)):
                 line[num] = int(line[num])
-            x = next_num_rev(line)
+            x = next_num(line)
             print()
             sum += x
         print(sum)
@@ -42,10 +43,10 @@ derivation of the current series and return it (steps 6-9)
 
 ie 
 (step 0)10  13  16  21  30  45  (step 9)(45+23)
-(step 1)3   3   5   9  15   (step 8)(15+8)
-(step 2)  0   2   4   6  (step 7)(6+2)
-(step 3)    2   2   2  (step 6)(2+0)
-(step 4)      0   0 (step 5)(0+0)
+(step 1)   3   3   5   9  15   (step 8)(15+8)
+(step 2)      0   2   4   6  (step 7)(6+2)
+(step 3)        2   2   2  (step 6)(2+0)
+(step 4)           0   0 (step 5)(0+0)
 """
 def next_num(line):
     #If everything is done start the cascade
@@ -56,7 +57,7 @@ def next_num(line):
     for i in range(len(line)-1):
         next_line.append(line[i+1]- line[i])
     # calculate new col
-    y = line[len(line)-1] + next_num(next_line)
+    y = line[-1] + next_num(next_line)
     print(y)
     return y
 
@@ -71,11 +72,6 @@ the previous to make a new list (steps 1 - 4)
 derivation of the current series and return it (steps 6-9)
 
 ie 
-5  10  13  16  21  30  45
-  5   3   3   5   9  15
-   -2   0   2   4   6
-      2   2   2   2
-        0   0   0
 (step 9) (10-5)  (step 0)10  13  16  21  30  45
 (step 8) (3-(-2))(step 1)   3   3   5   9  15   
 (step 7) (0-2)   (step 2)     0   2   4   6 
@@ -102,7 +98,7 @@ def main():
     stress = '/Users/quinoant/Downloads/advent-of-code/src/postgrad2023/day9/stress.txt'
     input = '/Users/quinoant/Downloads/advent-of-code/src/postgrad2023/day9/input.txt'
     test = '/Users/quinoant/Downloads/advent-of-code/src/postgrad2023/day9/test.txt'
-    series_extender(test)
+    series_extender(input)
 
 
 if __name__ == '__main__':

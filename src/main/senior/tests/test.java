@@ -1,4 +1,4 @@
-package src.senior.tests;
+package src.main.senior.tests;
 
 import java.io.File;
 import java.io.FileNotFoundException;

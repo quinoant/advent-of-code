@@ -1,4 +1,4 @@
-package src.senior.day8;
+package src.main.senior.day8;
 
 import java.io.File;
 import java.io.FileNotFoundException;

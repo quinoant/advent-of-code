@@ -1,11 +1,12 @@
-package src.senior.day7;
+package src.main.senior.day7;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-import src.senior.day7.Folder;
 
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.RestoreAction;
+
+import src.main.senior.day7.Folder;
 
 public class FileSystemGenerator {
     private File file;
